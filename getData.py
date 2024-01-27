@@ -1,7 +1,17 @@
 import httpx
 from bs4 import BeautifulSoup
 import json
+import re
 
+
+def text_filter(text):
+    # Splitting the text by \n and \r
+    segments = re.split(r'[\n\r]+', text)
+
+    # Filtering out blank or whitespace-only strings and stripping whitespace
+    filtered_segments = [segment.strip() for segment in segments if segment.strip()]
+
+    return filtered_segments
 
 def getPinchosLunches():
     lunches = []
@@ -26,8 +36,8 @@ def getPinchosLunches():
         lunches.append(meal.text)
         print('Getting:',meal.text)
 
-    with open('pinchos-lunches.json', 'w') as f:
-        json.dump(lunches, f)
+    with open('pinchos-lunches.json', 'w', encoding="utf-8") as f:
+        json.dump(lunches, f, indent=4)
 
 
 def getSkafferietLunches():
@@ -53,8 +63,8 @@ def getSkafferietLunches():
        lunches.append(meal.text)
        print("Getting:", meal.text)
 
-    with open('skafferiet-lunches.json', 'w') as f:
-        json.dump(lunches, f)
+    with open('skafferiet-lunches.json', 'w', encoding="utf-8") as f:
+        json.dump(lunches, f, indent=4)
 
 
 def getMellbyGatans():
@@ -75,16 +85,21 @@ def getMellbyGatans():
     soup = BeautifulSoup(r, 'html.parser')
     meals = soup.find('div', {"class": "week-menu"}).find_all("p")
     
+    
     print('MELLBYGATANS')
     for meal in meals:
-       lunches.append(meal.text)
-       print("Getting:", meal.text)
+        lunches.append(meal.text)
+        print('Getting: ', meal.text)
+    
+    sorted_lunches = text_filter(lunches[0])
 
     with open('mellbygatans-lunches.json', 'w', encoding="utf-8") as f:
-        json.dump(lunches, f,indent=4)
+        json.dump(sorted_lunches[3:], f, indent=4)
 
 def main():
     getMellbyGatans()
+    getSkafferietLunches()
+    getPinchosLunches()
 
 if __name__ == "__main__":
     main()
