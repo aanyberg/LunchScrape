@@ -91,15 +91,13 @@ def getMellbyGatans():
         lunches.append(meal.text)
         print('Getting: ', meal.text)
     
-    sorted_lunches = text_filter(lunches[0])
+    sorted_lunches = text_filter(lunches[0]) # Text had to be filtered to get rid of unncesseray text that couldn't be avoided.
 
     with open('mellbygatans-lunches.json', 'w', encoding="utf-8") as f:
         json.dump(sorted_lunches[3:], f, indent=4)
 
 def main():
-    getMellbyGatans()
-    getSkafferietLunches()
-    getPinchosLunches()
+    pass
 
 if __name__ == "__main__":
     main()
