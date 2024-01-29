@@ -14,7 +14,7 @@ def text_filter(text):
 
     return filtered_segments
 
-def getPinchosLunches():
+def getPinchos():
     lunches = []
     url = "https://rskrapan.se/"
     headers = {"User-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" }
@@ -44,7 +44,7 @@ def getPinchosLunches():
         json.dump(lunches, f, indent=4)
 
 
-def getSkafferietLunches():
+def getSkafferiet():
     lunches = []
     url = "https://www.skafferietlidkoping.se/"
     headers = {"User-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" }
@@ -106,10 +106,44 @@ def getMellbyGatans():
     with open('./JSON/mellbygatans-lunches.json', 'w', encoding="utf-8") as f:
         json.dump(sorted_lunches[3:], f, indent=4)
 
+
+def getVilla():
+    lunches = []
+    url = "https://nittontrettiofyra.se/lunch/"
+    headers = {"User-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" }
+
+    try:
+        r = httpx.get(url, headers=headers)
+        r.raise_for_status()
+    except httpx.HTTPStatusError as e:
+        print(f"HTTP error occurred: {e}")
+        return
+    except httpx.RequestError as e:
+        print(f"An error occurred while requesting {e.request.url!r}.")
+        return
+        
+    soup = BeautifulSoup(r, 'html.parser')
+    meal_titles = soup.find('div', {"class": "lunch"}).find_all("h4")
+    meals = soup.find_all("div", {"class": "text-[14px]"})
+    
+    print('VILLA RESTAURANGEN')
+    for title, meal in zip(meal_titles, meals):
+        lunches.append(f"{title.text}: {meal.text}")
+        print(f"Getting: {title.text}: {meal.text}")
+
+    if not os.path.exists('./JSON'):
+        os.mkdir('./JSON')
+    
+    with open('./JSON/villa-lunches.json', 'w', encoding="utf-8") as f:
+        json.dump(lunches, f, indent=4)
+
+
 def main():
+    getPinchos()
+    getSkafferiet()
     getMellbyGatans()
-    getPinchosLunches()
-    getSkafferietLunches()
+    getVilla()
+
 
 if __name__ == "__main__":
     main()
