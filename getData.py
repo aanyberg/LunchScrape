@@ -2,6 +2,7 @@ import httpx
 from bs4 import BeautifulSoup
 import json
 import re
+import os
 
 
 def text_filter(text):
@@ -36,7 +37,10 @@ def getPinchosLunches():
         lunches.append(meal.text)
         print('Getting:',meal.text)
 
-    with open('pinchos-lunches.json', 'w', encoding="utf-8") as f:
+    if not os.path.exists('./JSON'):
+        os.mkdir('./JSON')
+
+    with open('./JSON/pinchos-lunches.json', 'w', encoding="utf-8") as f:
         json.dump(lunches, f, indent=4)
 
 
@@ -63,7 +67,10 @@ def getSkafferietLunches():
        lunches.append(meal.text)
        print("Getting:", meal.text)
 
-    with open('skafferiet-lunches.json', 'w', encoding="utf-8") as f:
+    if not os.path.exists('./JSON'):
+        os.mkdir('./JSON')
+
+    with open('./JSON/skafferiet-lunches.json', 'w', encoding="utf-8") as f:
         json.dump(lunches, f, indent=4)
 
 
@@ -93,11 +100,16 @@ def getMellbyGatans():
     
     sorted_lunches = text_filter(lunches[0]) # Text had to be filtered to get rid of unncesseray text that couldn't be avoided.
 
-    with open('mellbygatans-lunches.json', 'w', encoding="utf-8") as f:
+    if not os.path.exists('./JSON'):
+        os.mkdir('./JSON')
+    
+    with open('./JSON/mellbygatans-lunches.json', 'w', encoding="utf-8") as f:
         json.dump(sorted_lunches[3:], f, indent=4)
 
 def main():
-    pass
+    getMellbyGatans()
+    getPinchosLunches()
+    getSkafferietLunches()
 
 if __name__ == "__main__":
     main()
