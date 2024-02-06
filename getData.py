@@ -4,6 +4,7 @@ import json
 import re
 import os
 
+JSON_PATH = "./app/json/"
 
 def text_filter(text):
     # Splitting the text by \n and \r
@@ -37,10 +38,10 @@ def getPinchos():
         lunches.append(meal.text)
         print('Getting:',meal.text)
 
-    if not os.path.exists('./JSON'):
-        os.mkdir('./JSON')
+    if not os.path.exists(f'{JSON_PATH}'):
+        os.mkdir(f'{JSON_PATH}')
 
-    with open('./JSON/pinchos-lunches.json', 'w', encoding="utf-8") as f:
+    with open(f'{JSON_PATH}pinchos.json', 'w', encoding="utf-8") as f:
         json.dump(lunches, f, indent=4)
 
 
@@ -67,10 +68,10 @@ def getSkafferiet():
        lunches.append(meal.text)
        print("Getting:", meal.text)
 
-    if not os.path.exists('./JSON'):
-        os.mkdir('./JSON')
+    if not os.path.exists(f'{JSON_PATH}'):
+        os.mkdir(f'{JSON_PATH}')
 
-    with open('./JSON/skafferiet-lunches.json', 'w', encoding="utf-8") as f:
+    with open(f'{JSON_PATH}skafferiet.json', 'w', encoding="utf-8") as f:
         json.dump(lunches, f, indent=4)
 
 
@@ -100,10 +101,10 @@ def getMellbyGatans():
     
     sorted_lunches = text_filter(lunches[0]) # Text had to be filtered to get rid of unncesseray text that couldn't be avoided.
 
-    if not os.path.exists('./JSON'):
-        os.mkdir('./JSON')
+    if not os.path.exists(f'{JSON_PATH}'):
+        os.mkdir(f'{JSON_PATH}')
     
-    with open('./JSON/mellbygatans-lunches.json', 'w', encoding="utf-8") as f:
+    with open(f'{JSON_PATH}mellbygatans.json', 'w', encoding="utf-8") as f:
         json.dump(sorted_lunches[3:], f, indent=4)
 
 
@@ -131,10 +132,10 @@ def getVilla():
         lunches.append(f"{title.text}: {meal.text}")
         print(f"Getting: {title.text}: {meal.text}")
 
-    if not os.path.exists('./JSON'):
-        os.mkdir('./JSON')
+    if not os.path.exists(f'{JSON_PATH}'):
+        os.mkdir(f'{JSON_PATH}')
     
-    with open('./JSON/villa-lunches.json', 'w', encoding="utf-8") as f:
+    with open(f'{JSON_PATH}villa-restaurangen.json', 'w', encoding="utf-8") as f:
         json.dump(lunches, f, indent=4)
 
 
