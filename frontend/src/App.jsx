@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const App = () => {
   const [message, setMessage] = useState("");
-  const fetchSkafferiet = async () => {
+  const fetchData = async () => {
     const requestOptions = {
       method: "GET",
       headers: {
@@ -20,13 +20,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchSkafferiet();
+    fetchData();
   }, []);
   
 
   return (
     <div>
-      <h1>{message}</h1>
+      <h6>{message}</h6>
     </div>
   );
 }
