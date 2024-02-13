@@ -1,4 +1,4 @@
-# Lunch Scrape
+# Scraping for lunches
 
 This is a scraping project that collects data from several restaurant websites in Lidköping and presents the information in a single place instead of looking at several places. This simplifies the choice of where to eat and reduces the time it takes to decide where to go.
 
