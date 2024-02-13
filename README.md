@@ -10,8 +10,8 @@ This is a scraping project that collects data from several restaurant websites i
 
 ## Requirements
 ```python
-- beautifulsoup4==4.12.3
-- fastapi==0.109.2
-- httpx==0.26.0
-- uvicorn==0.27.1
+beautifulsoup4==4.12.3
+fastapi==0.109.2
+httpx==0.26.0
+uvicorn==0.27.1
 ```
