@@ -105,7 +105,7 @@ def getMellbyGatans():
         os.mkdir(f'{JSON_PATH}')
     
     with open(f'{JSON_PATH}mellbygatans.json', 'w', encoding="utf-8") as f:
-        json.dump(sorted_lunches[3:], f, indent=4)
+        json.dump(sorted_lunches[4:], f, indent=4)
 
 
 def getVilla():

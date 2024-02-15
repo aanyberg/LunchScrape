@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
+import json
+
+from app.dependencies import readMellbygatans
 
 
 app = FastAPI()
@@ -20,5 +23,11 @@ app.add_middleware(
 
 @app.get("/api")
 async def root():
-    return {"message": "Hello World"}
+    mellbygatans = readMellbygatans()
+
+    restaurant_menus = {"restaurants": {"mellbygatans": mellbygatans}}
+    print(restaurant_menus)
+
+    return json.dumps(restaurant_menus, ensure_ascii=False, indent=2)
+
 
