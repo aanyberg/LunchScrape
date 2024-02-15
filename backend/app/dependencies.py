@@ -13,9 +13,5 @@ def readMellbygatans():
     menu_items = []
     for item in menu_data:
         menu_items.append(item)
-    
-    return {"mellbygatans": menu_items}
 
-
-readMellbygatans()
-
+    return menu_items
