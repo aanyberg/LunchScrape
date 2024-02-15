@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
 import json
 
-from app.dependencies import readMellbygatans
+from dependencies import readMellbygatans
 
 
 app = FastAPI()
