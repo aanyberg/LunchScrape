@@ -1,6 +1,6 @@
 import json
 
-MELLBYGATANS_JSON = 'backend/app/json/mellbygatans.json'
+MELLBYGATANS_JSON = 'app/json/mellbygatans.json'
 SKAFFERIET_JSON = 'backend/app/json/skafferiet.json'
 PINCHOS_JSON = 'backend/app/json/pinchos.json'
 VILLARESTAURANGEN_JSON = 'backend/app/json/villa-restaurangen.json'

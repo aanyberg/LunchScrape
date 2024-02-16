@@ -21,13 +21,11 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/api")
+@app.get("/api/mellbygatans")
 async def root():
     mellbygatans = readMellbygatans()
 
     restaurant_menus = {"restaurants": {"mellbygatans": mellbygatans}}
-    print(restaurant_menus)
 
     return json.dumps(restaurant_menus, ensure_ascii=False, indent=2)
-
 

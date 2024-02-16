@@ -1,36 +1,45 @@
 import React, { useEffect, useState } from 'react'
 
-const App = () => {
-  const [message, setMessage] = useState("");
-  const fetchData = async () => {
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
-    const response = await fetch("/api", requestOptions);
-    const data = await response.json();
+const responseOptions = {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 
-    if (!response.ok) {
-      console.log("Something went wrong");
-    } else {
-      setMessage(data);
-    };
-  };
+async function fetchMellbygatansMenu() {
+  const response = await fetch("/api/mellbygatans", responseOptions);
+  const data = await response.json();
+  
+  const restaurantMenu = data;
+
+  return restaurantMenu;
+};
+
+
+function App() {
+  const [menuItems, setMenuItems] = useState([]);
 
   useEffect(() => {
+    async function fetchData() {
+      try {
+        const menu = await fetchMellbygatansMenu();
+        setMenuItems(menu);
+      } catch (error) {
+        console.error("Error fetching menu:", error);
+      }
+    }
     fetchData();
   }, []);
 
-  
-
   return (
     <div>
-      <h6>{message}</h6>
+      <h2>Restaurant Menu</h2>
+      <ul>
+        {menuItems}
+      </ul>
     </div>
   );
 }
-
 
 export default App;
