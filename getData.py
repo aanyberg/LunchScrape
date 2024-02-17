@@ -36,7 +36,6 @@ def getPinchos():
     print('PINCHOS')
     for meal in meals[:6]:
         lunches.append(meal.text)
-        print('Getting:',meal.text)
 
     if not os.path.exists(f'{JSON_PATH}'):
         os.mkdir(f'{JSON_PATH}')
@@ -66,7 +65,6 @@ def getSkafferiet():
     print('SKAFFERIET')
     for meal in meals[3:]:
        lunches.append(meal.text)
-       print("Getting:", meal.text)
 
     if not os.path.exists(f'{JSON_PATH}'):
         os.mkdir(f'{JSON_PATH}')
@@ -97,7 +95,6 @@ def getMellbyGatans():
     print('MELLBYGATANS')
     for meal in meals:
         lunches.append(meal.text)
-        print('Getting: ', meal.text)
     
     sorted_lunches = text_filter(lunches[0]) # Text had to be filtered to get rid of unncesseray text that couldn't be avoided.
 
@@ -130,7 +127,6 @@ def getVilla():
     print('VILLA RESTAURANGEN')
     for title, meal in zip(meal_titles, meals):
         lunches.append(f"{title.text}: {meal.text}")
-        print(f"Getting: {title.text}: {meal.text}")
 
     if not os.path.exists(f'{JSON_PATH}'):
         os.mkdir(f'{JSON_PATH}')

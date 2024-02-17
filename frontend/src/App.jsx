@@ -22,7 +22,8 @@ function FetchAllMenus() {
     const mellbygatansMenu = menu.mellbygatans;
     const skafferietMenu = menu.skafferiet;
     const pinchosMenu = menu.pinchos;
-    const villaMenu = menu.villa;
+    const villaMenu = menu.villa_restaurangen;
+    console.log(villaMenu);
 
   
     if (!response.ok) {
@@ -71,7 +72,7 @@ function FetchAllMenus() {
         <h1>Villa</h1>
         <ul>
           {villaItems.map((item, index) => {
-            return <li key={index}>{item}</li>;
+            return <li key={index}>{item}</li>
           })}
         </ul>
       </div>
