@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
-const responseOptions = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
 
 async function fetchMellbygatansMenu() {
+  const responseOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
   const response = await fetch("/api/mellbygatans", responseOptions);
   const data = await response.json();
   
-  const restaurantMenu = data;
+  const restaurantMenu = JSON.parse(data);
+  const menuItems = restaurantMenu.restaurants.mellbygatans;
 
-  return restaurantMenu;
+  return menuItems;
 };
 
 
@@ -36,7 +37,9 @@ function App() {
     <div>
       <h2>Restaurant Menu</h2>
       <ul>
-        {menuItems}
+        {menuItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
       </ul>
     </div>
   );
