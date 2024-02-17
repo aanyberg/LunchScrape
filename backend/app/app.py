@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
 import json
 
-from app.dependencies import readMellbygatans
+from dependencies import readMellbygatans, readSkafferiet, readPinchos, readVillaRestaurangen
 
 
 app = FastAPI()
@@ -21,11 +21,13 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/api/mellbygatans")
-async def root():
+@app.get("/api/menus")
+async def menus():
     mellbygatans = readMellbygatans()
-
-    restaurant_menus = {"restaurants": {"mellbygatans": mellbygatans}}
+    skafferiet = readSkafferiet()
+    pinchos = readPinchos()
+    villa_restaurangen = readVillaRestaurangen()
+    restaurant_menus = {"mellbygatans": mellbygatans, "skafferiet": skafferiet, "pinchos": pinchos, "villa_restaurangen": villa_restaurangen}
 
     return json.dumps(restaurant_menus, ensure_ascii=False, indent=2)
 
