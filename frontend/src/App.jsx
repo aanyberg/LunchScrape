@@ -1,48 +1,53 @@
 import React, { useEffect, useState } from 'react'
 
 
-async function fetchMellbygatansMenu() {
-  const responseOptions = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  const response = await fetch("/api/mellbygatans", responseOptions);
-  const data = await response.json();
-  
-  const restaurantMenu = JSON.parse(data);
-  const menuItems = restaurantMenu.restaurants.mellbygatans;
-
-  return menuItems;
+const responseOptions = {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
 };
 
-
-function App() {
-  const [menuItems, setMenuItems] = useState([]);
+function FetchMellbygatansMenu() {
+  
+  const [mellbyMenuItems, setMellbyItems] = useState([]); // State variable to store the menu items for Mellbygatans restaurant
+  
+  const fetchMellbygatans = async () => {
+    const response = await fetch("/api/mellbygatans", responseOptions);
+    const data = await response.json();
+    
+    const menu = JSON.parse(data);
+    const restaurantMenu = menu.restaurants.mellbygatans;
+  
+    if (!response.ok) {
+      const error = (data && data.message) || response.statusText;
+      return Promise.reject(error);
+    } else {
+      setMellbyItems(restaurantMenu);
+    }
+  };
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const menu = await fetchMellbygatansMenu();
-        setMenuItems(menu);
-      } catch (error) {
-        console.error("Error fetching menu:", error);
-      }
-    }
-    fetchData();
+    fetchMellbygatans();
   }, []);
+
 
   return (
     <div>
-      <h2>Restaurant Menu</h2>
+      <h1>Mellbygatans</h1>
       <ul>
-        {menuItems.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
+        {mellbyMenuItems.map((item, index) => {
+          return <li key={index}>{item}</li>;
+        })}
       </ul>
     </div>
   );
+};
+
+
+
+function App() {
+  return <FetchMellbygatansMenu />;
 }
 
 export default App;
