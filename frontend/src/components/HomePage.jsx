@@ -6,9 +6,11 @@ const HomePage = () => {
     <div>
       <h1>Welcome to the Homepage</h1>
       <p>This is the homepage of our website.</p>      
-      <main>
-        <FetchAllMenus />
-      </main>
+      <div>
+        <main>
+          <FetchAllMenus />
+        </main>
+      </div>
     </div>
   );
 };

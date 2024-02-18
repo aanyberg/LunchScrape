@@ -42,33 +42,33 @@ const responseOptions = {
   
   
     return (
-      <div id="card-container">
-        <div id="mellbygatans">
-          <h1>Mellbygatans</h1>
+      <div id="card-container" className='columns box'>
+        <div id="mellbygatans" className='column mb-1'>
+          <h1 className='title'>Mellbygatans</h1>
           <ul>
             {mellbyItems.map((item, index) => {
               return <li key={index}>{item}</li>;
             })}
           </ul>
         </div>
-        <div id="skafferiet">
-          <h1>Skafferiet</h1>
+        <div id="skafferiet" className='column mb-1'>
+          <h1 className='title'>Skafferiet</h1>
           <ul>
             {skafferietItems.map((item, index) => {
               return <li key={index}>{item}</li>;
             })}
           </ul>
         </div>
-        <div id="pinchos">
-          <h1>Pinchos</h1>
+        <div id="pinchos" className='column mb-1'>
+          <h1 className='title'>Pinchos</h1>
           <ul>
             {pinchosItems.map((item, index) => {
               return <li key={index}>{item}</li>;
             })}
           </ul>
         </div>
-        <div id="villa">
-          <h1>Villa</h1>
+        <div id="villa" className='column mb-1'>
+          <h1 className='title'>Villa</h1>
           <ul>
             {villaItems.map((item, index) => {
               return <li key={index}>{item}</li>
