@@ -4,11 +4,11 @@ function Footer() {
   return (
   <footer class="footer">
     <div class="content has-text-centered">
-      <p>
-        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-      </p>
+    <p>
+      <strong>© 2024 Lunch i Lidköping</strong> by Alexander Nyberg 
+    </p>
+      <a href='https://github.com/aanyberg/lidkoping-lunch-scrape'><p className='has-text-black'>GitHub Repo</p></a>
+      <a href='mailto:alexandernyberg@me.com'><p className='has-text-black'>Contact</p></a>
     </div>
   </footer>
   );
