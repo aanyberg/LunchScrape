@@ -1,0 +1,12 @@
+
+.deepskyblue {
+  background-color: #204560;
+}
+
+.backgroundImage {
+  background-image: url('../img/gagatan-lidkoping-grayscale.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 450px; 
+  width: 100%;
+}
