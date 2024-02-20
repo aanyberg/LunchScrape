@@ -68,7 +68,7 @@ const responseOptions = {
           </ul>
         </div>
         <div id="villa" className='column mb-1'>
-          <h1 className='title'>Villa</h1>
+          <h1 className='title'>Villa Restaurangen</h1>
           <ul>
             {villaItems.map((item, index) => {
               return <li key={index}>{item}</li>
