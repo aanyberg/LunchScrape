@@ -1,5 +1,92 @@
-.deepskyblue {
-  background-color: hwb(205 13% 62% / 0.5);
+:root {
+  --primary: #780116;
+  --primary-content: #a0c4df;
+  --primary-dark: #13293a;
+  --primary-light: #c32f27;
+  
+  --secondary: #db7c26;
+  --secondary-content: #dfa0a5;
+  --secondary-dark: #3a1316;
+  --secondary-light: #862d34;
+  
+  --background: #eff0f1;
+  --foreground: #fbfbfb;
+  --border: #dddfe2;
+  
+  --copy: #232729;
+  --copy-light: #5e676e;
+  --copy-lighter: #848e95;
+  
+  --success: #206020;
+  --warning: #606020;
+  --error: #602020;
+  --success-content: #a0dfa0;
+  --warning-content: #dfdfa0;
+  --error-content: #dfa0a0;
+}
+
+.primary-bg {
+  background-color: var(--primary);
+}
+
+.primary-text {
+  color: var(--primary-content);
+}
+
+.primary-dark-bg {
+  background-color: var(--primary-dark);
+}
+
+.primary-light-bg {
+  background-color: var(--primary-light);
+}
+
+.primary-light-text {
+  color: var(--primary-light);
+}
+
+.secondary-bg {
+  background-color: var(--secondary);
+}
+
+.secondary-bg-text {
+  color: var(--secondary);
+}
+
+.secondary-text {
+  color: var(--secondary-content);
+}
+
+.secondary-dark-bg {
+  background-color: var(--secondary-dark);
+}
+
+.secondary-light-bg {
+  background-color: var(--secondary-light);
+}
+
+.background-color {
+  background-color: var(--background);
+}
+
+.foreground-color {
+  color: var(--foreground);
+}
+
+.border-color {
+  border-color: var(--border);
+}
+
+.copy-text {
+  color: var(--copy);
+}
+
+.copy-light-text {
+  color: var(--copy-light);
+}
+
+.copy-lighter-text {
+  color: var(--copy-lighter);
 }
 
 .backgroundImage {
@@ -9,3 +96,31 @@
   height: 450px; 
   width: 100%;
 }
+
+.text-dropshadow {
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.navbar-bg {
+  background-color: rgba(120, 1, 22, 0.9);
+}
+
+
+.kalam-light {
+  font-family: "Kalam", cursive;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.kalam-regular {
+  font-family: "Kalam", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.kalam-bold {
+  font-family: "Kalam", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
+

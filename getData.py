@@ -127,7 +127,7 @@ def getVilla():
     print('VILLA RESTAURANGEN')
     for title, meal in zip(meal_titles, meals):
         lunches.append(f"{title.text}: {meal.text}")
-
+    
     if not os.path.exists(f'{JSON_PATH}'):
         os.mkdir(f'{JSON_PATH}')
     

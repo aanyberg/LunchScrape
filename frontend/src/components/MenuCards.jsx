@@ -22,7 +22,6 @@ const responseOptions = {
       const skafferietMenu = menu.skafferiet;
       const pinchosMenu = menu.pinchos;
       const villaMenu = menu.villa_restaurangen;
-      console.log(villaMenu);
   
     
       if (!response.ok) {
@@ -42,34 +41,34 @@ const responseOptions = {
   
   
     return (
-      <div id="card-container" className='columns box'>
-        <div id="mellbygatans" className='column mb-1'>
-          <h1 className='title'>Mellbygatans</h1>
-          <ul>
+      <div id="card-container" className='columns'>
+        <div id="mellbygatans" className='column box mx-2 pb-6 mt-4 mb-5 p-5'>
+          <h1 className='title has-text-centered primary-light-text'>Mellbygatans</h1>
+          <ul className='has-text-centered'>
             {mellbyItems.map((item, index) => {
               return <li key={index}>{item}</li>;
             })}
           </ul>
         </div>
-        <div id="skafferiet" className='column mb-1'>
-          <h1 className='title'>Skafferiet</h1>
-          <ul>
+        <div id="skafferiet" className='column box mx-2 pb-6 mt-4 mb-5 p-4'>
+          <h1 className='title has-text-centered primary-light-text'>Skafferiet</h1>
+          <ul className='has-text-centered'>
             {skafferietItems.map((item, index) => {
               return <li key={index}>{item}</li>;
             })}
           </ul>
         </div>
-        <div id="pinchos" className='column mb-1'>
-          <h1 className='title'>Pinchos</h1>
-          <ul>
+        <div id="pinchos" className='column box mx-2 pb-6 mt-4 mb-5 p-5'>
+          <h1 className='title has-text-centered primary-light-text'>Pinchos</h1>
+          <ul className='has-text-centered'>
             {pinchosItems.map((item, index) => {
               return <li key={index}>{item}</li>;
             })}
           </ul>
         </div>
-        <div id="villa" className='column mb-1'>
-          <h1 className='title'>Villa Restaurangen</h1>
-          <ul>
+        <div id="villa" className='column box mx-2 pb-6 mt-4 mb-5 p-5'>
+          <h1 className='title has-text-centered primary-light-text'>Villa Restaurangen</h1>
+          <ul className='has-text-centered'>
             {villaItems.map((item, index) => {
               return <li key={index}>{item}</li>
             })}
