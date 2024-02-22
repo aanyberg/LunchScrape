@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Union
+from mangum import Mangum
 import json
 
 from app.dependencies import readMellbygatans, readSkafferiet, readPinchos, readVillaRestaurangen
 
 
 app = FastAPI()
+handler = Mangum(app)
 
 origins = [
     "http://localhost:3000",
