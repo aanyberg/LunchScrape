@@ -1,0 +1,27 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "80:80"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./backend/app/json:/app/backend/json
+
+  cron:
+    image: alpine
+    volumes:
+      - ./backend:/app/backend
+      - ./scraper:/app/scraper
+      - ./crontab:/etc/cron.d
+    command: ["crond", "-f", "-l", "8"]
+    restart: always

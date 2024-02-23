@@ -2,7 +2,7 @@
 FROM node:14-alpine as build
 
 # Set working directory
-WORKDIR /
+WORKDIR /frontend
 
 # Copy package files
 COPY package.json package-lock.json ./
@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy build files from previous stage
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build frontend/build /usr/share/nginx/html
 
 # Expose port
 EXPOSE 80
