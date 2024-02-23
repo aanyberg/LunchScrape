@@ -1,8 +1,20 @@
-# Dockerfile
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.10
+# Use Python base image
+FROM python:3.9-slim
 
-# for Amplify 
-# https://docs.amplify.aws/cli/usage/containers#deploy-a-single-container
-EXPOSE 80
+# Set working directory
+WORKDIR /app
 
-COPY ./ /backend
+# Copy requirements
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install -r requirements.txt
+
+# Copy backend files
+COPY app app
+
+# Expose port
+EXPOSE 8000
+
+# Command to run the backend server
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
