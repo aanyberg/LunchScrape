@@ -16,6 +16,7 @@ services:
     volumes:
       - ./backend:/backend
       - ./backend/app/json:/backend/app/json
+    command: ["uvicorn", "app.app:app", "--host", "0.0.0.0", "--port", "8000"]
 
   cron:
     build:
@@ -24,4 +25,4 @@ services:
     volumes:
       - ./backend:/backend
       - ./backend/app/json:/backend/app/json
-    command: cron -f  # Run cron in the foreground
+    command: sh entrypoint.sh
