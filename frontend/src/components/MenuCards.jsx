@@ -14,7 +14,7 @@ const responseOptions = {
     const [villaItems, setVillaMenu] = useState([]);
     
     const fetchMenus = async () => {
-      const response = await fetch("http://backend:8000/api/menus", responseOptions);
+      const response = await fetch("http://13.51.255.200:8000/api/menus", responseOptions);
       const data = await response.json();
       
       const menu = JSON.parse(data);
