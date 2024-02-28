@@ -4,7 +4,7 @@ import json
 import re
 import os
 
-JSON_PATH = "./backend/app/json/"
+JSON_PATH = "/backend/app/json/"
 
 def text_filter(text):
     # Splitting the text by \n and \r

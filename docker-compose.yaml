@@ -2,8 +2,8 @@ version: '3'
 services:
   frontend:
     build:
-      context: .
-      dockerfile: frontend/Dockerfile
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "80:80"
 
@@ -14,14 +14,14 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app/backend
-      - ./backend/app/json:/app/backend/json
+      - ./backend:/backend
+      - ./backend/app/json:/backend/app/json
 
   cron:
-    image: alpine
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     volumes:
-      - ./backend:/app/backend
-      - ./scraper:/app/scraper
-      - ./crontab:/etc/cron.d
-    command: ["crond", "-f", "-l", "8"]
-    restart: always
+      - ./backend:/backend
+      - ./backend/app/json:/backend/app/json
+    command: cron -f  # Run cron in the foreground
