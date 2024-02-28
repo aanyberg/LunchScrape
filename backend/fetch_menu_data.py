@@ -63,7 +63,7 @@ def getSkafferiet():
     meals = soup.find('div', {"class": "postdiv"}).find_all('h6')
     
     print('SKAFFERIET')
-    for meal in meals[3:]:
+    for meal in meals[1:]:
        lunches.append(meal.text)
 
     if not os.path.exists(f'{JSON_PATH}'):
