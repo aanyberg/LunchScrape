@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
+const IP_ADDRESS = "http://localhost:8000";
+
 const responseOptions = {
     method: "GET",
     headers: {
@@ -14,7 +16,7 @@ const responseOptions = {
     const [villaItems, setVillaMenu] = useState([]);
     
     const fetchMenus = async () => {
-      const response = await fetch("http://13.51.255.200:8000/api/menus", responseOptions);
+      const response = await fetch(IP_ADDRESS + "/api/menus", responseOptions);
       const data = await response.json();
       
       const menu = JSON.parse(data);
@@ -50,7 +52,7 @@ const responseOptions = {
             })}
           </ul>
         </div>
-        <div id="skafferiet" className='column box mx-2 pb-6 mt-4 mb-5 p-4'>
+        <div id="skafferiet" className='column box mx-2 pb-6 mt-4 mb-5 p-5'>
           <h1 className='title has-text-centered primary-light-text'>Skafferiet</h1>
           <ul className='has-text-centered'>
             {skafferietItems.map((item, index) => {
