@@ -1,8 +1,7 @@
-#!/bin/sh
-echo "Cron job started - Fetching Menu Data"  # Output will be logged
+#!/bin/bash
+echo "JOB STARTED - FETCHING MENU DATA:"  # Log message to indicate the script has started
 
-# Change directory to where your Python script is located
 cd /backend
 
-# Run your Python web scraping script
-python3 fetch_menu_data.py > /var/log/fetch_menu_data.log 2>&1
+# Path to Python executable had to be used otherwise the script would not run
+exec /usr/local/bin/python3 fetch_menu_data.py >> /var/log/cron.log 2>&1

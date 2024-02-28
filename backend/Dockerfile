@@ -5,25 +5,22 @@ WORKDIR /backend
 COPY requirements.txt .
 
 # Install dependencies
-RUN apt-get update && apt-get install -y cron && pip install -r requirements.txt
+RUN apt-get update && \ 
+    apt-get install -y cron && \ 
+    pip install -r requirements.txt
 
 # Copy backend files
 COPY app app
 
-COPY scraper_script.sh /etc/cron.hourly/scraper_script.sh
+COPY scraper_script.sh /etc/cron.d/scraper_script.sh
 
 COPY entrypoint.sh /backend/entrypoint.sh
 
-ADD crontab /etc/cron.d/scraper_script
+COPY crontab /etc/cron.d/crontab
 
-RUN chmod +x /backend/entrypoint.sh
-
-RUN chmod 0644 /etc/cron.d/scraper_script
-
-RUN crontab /etc/cron.d/scraper_script
-
-RUN touch /var/log/cron.log
-
-RUN chmod +x /etc/cron.hourly/scraper_script.sh
+RUN touch /var/log/cron.log && \ 
+    chmod +x /backend/entrypoint.sh && \ 
+    chmod +x /etc/cron.d/scraper_script.sh && \
+    chmod 0644 /etc/cron.d/crontab
 
 EXPOSE 8000
