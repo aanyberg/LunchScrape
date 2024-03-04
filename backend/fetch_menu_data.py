@@ -7,15 +7,16 @@ import os
 JSON_PATH = "./app/json/"
 
 def text_filter(text):
-    pattern = r'[\r\n]+'
+    pattern = r'[\r\n\u00a0]+'
 
     # Split the text into segments
     split_texts = [[segment for segment in re.split(pattern, text)] for text in text]
 
     # Flatten the list of lists into a single list
     flattened_texts = [item for sublist in split_texts for item in sublist]
+    remove_empty = list(filter(None, flattened_texts))
 
-    return flattened_texts
+    return remove_empty
 
 
 def getPinchos():
@@ -122,7 +123,7 @@ def getMellbyGatans():
         os.mkdir(f'{JSON_PATH}')
     
     with open(f'{JSON_PATH}mellbygatans.json', 'w', encoding="utf-8") as f:
-        json.dump(sorted_lunches, f, indent=4)
+        json.dump(sorted_lunches[5:], f, indent=4)
 
 
 def getVilla():
