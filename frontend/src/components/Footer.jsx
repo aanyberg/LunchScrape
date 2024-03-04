@@ -7,7 +7,7 @@ function Footer() {
     <p className='has-text-white'>
       <strong className='has-text-white'>© 2024 Lunch Lidköping</strong>
     </p>
-      <a href='https://github.com/aanyberg/lidkoping-lunch-scrape'><p className='has-text-white'>GitHub Repo</p></a>
+      <a href='https://github.com/aanyberg/lidkoping-lunch-scrape'><p className='has-text-white'>GitHub</p></a>
       <a href='mailto:alexandernyberg@me.com'><p className='has-text-white'>Contact</p></a>
     </div>
   </footer>

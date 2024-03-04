@@ -4,16 +4,19 @@ import json
 import re
 import os
 
-JSON_PATH = "/backend/app/json/"
+JSON_PATH = "./backend/app/json/"
 
 def text_filter(text):
-    # Splitting the text by \n and \r
-    segments = re.split(r'[\n\r]+', text)
+    pattern = r'[\r\n]+'
 
-    # Filtering out blank or whitespace-only strings and stripping whitespace
-    filtered_segments = [segment.strip() for segment in segments if segment.strip()]
+    # Split the text into segments
+    split_texts = [[segment for segment in re.split(pattern, text)] for text in text]
 
-    return filtered_segments
+    # Flatten the list of lists into a single list
+    flattened_texts = [item for sublist in split_texts for item in sublist]
+
+    return flattened_texts
+
 
 def getPinchos():
     lunches = []
@@ -33,9 +36,15 @@ def getPinchos():
     soup = BeautifulSoup(r.text, 'html.parser')
     meals = soup.find('div', {"class": "main-page"}).find_all('h3')
 
-    print('PINCHOS')
+    print('PINCHOS:')
     for meal in meals[:6]:
         lunches.append(meal.text)
+        print(f"Getting: {meal.text}")
+
+    if not len(lunches) > 0:
+        error = "Couldn't fetch the menu for Pinchos"
+        print(error)
+        return error
 
     if not os.path.exists(f'{JSON_PATH}'):
         os.mkdir(f'{JSON_PATH}')
@@ -62,9 +71,15 @@ def getSkafferiet():
     soup = BeautifulSoup(r, 'html.parser')
     meals = soup.find('div', {"class": "postdiv"}).find_all('h6')
     
-    print('SKAFFERIET')
+    print('SKAFFERIET:')
     for meal in meals[1:]:
        lunches.append(meal.text)
+       print(f"Getting: {meal.text}")
+    
+    if not len(lunches) > 0:
+        error = "Couldn't fetch the menu for Skafferiet"
+        print(error)
+        return error
 
     if not os.path.exists(f'{JSON_PATH}'):
         os.mkdir(f'{JSON_PATH}')
@@ -90,19 +105,24 @@ def getMellbyGatans():
         
     soup = BeautifulSoup(r, 'html.parser')
     meals = soup.find('div', {"class": "week-menu"}).find_all("p")
-    
-    
-    print('MELLBYGATANS')
+
+    print('MELLBYGATANS:')
     for meal in meals:
         lunches.append(meal.text)
+        print(f"Getting: {meal.text}")
     
-    sorted_lunches = text_filter(lunches[0]) # Text had to be filtered to get rid of unncesseray text that couldn't be avoided.
+    sorted_lunches = text_filter(lunches) # Text had to be filtered to get rid of unncesseray text that couldn't be avoided.
+
+    if not len(sorted_lunches) > 0:
+        error = "Couldn't fetch the menu for Mellbygatans."
+        print(error)
+        return error
 
     if not os.path.exists(f'{JSON_PATH}'):
         os.mkdir(f'{JSON_PATH}')
     
     with open(f'{JSON_PATH}mellbygatans.json', 'w', encoding="utf-8") as f:
-        json.dump(sorted_lunches[4:], f, indent=4)
+        json.dump(sorted_lunches, f, indent=4)
 
 
 def getVilla():
@@ -124,9 +144,15 @@ def getVilla():
     meal_titles = soup.find('div', {"class": "lunch"}).find_all("h4")
     meals = soup.find_all("div", {"class": "text-[14px]"})
     
-    print('VILLA RESTAURANGEN')
+    print('VILLA RESTAURANGEN:')
     for title, meal in zip(meal_titles, meals):
         lunches.append(f"{title.text}: {meal.text}")
+        print(f"Getting: {title.text}: {meal.text}")
+
+    if not len(lunches) > 0:
+        error = "Couldn't fetch the menu for Villa Restaurangen."
+        print(error)
+        return error
     
     if not os.path.exists(f'{JSON_PATH}'):
         os.mkdir(f'{JSON_PATH}')
@@ -136,9 +162,9 @@ def getVilla():
 
 
 def main():
+    getMellbyGatans()
     getPinchos()
     getSkafferiet()
-    getMellbyGatans()
     getVilla()
 
 
