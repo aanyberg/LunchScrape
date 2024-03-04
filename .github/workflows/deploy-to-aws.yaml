@@ -26,9 +26,9 @@ jobs:
     - name: Copy files to EC2 instance
       run: |
         INSTANCE_IP=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID}} --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
-        scp -o StrictHostKeyChecking=no -r . ubuntu@ec2-${INSTANCE_IP}:/ubuntu/home
+        scp -o StrictHostKeyChecking=no -r . ubuntu@ec2-${INSTANCE_IP}.${{ secrets.AWS_REGION}}.compute.amazonaws.com:/ubuntu/home
 
     - name: Run deployment script
       run: |
         INSTANCE_IP=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID}} --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
-        ssh -o StrictHostKeyChecking=no ubuntu@ec2-${INSTANCE_IP} 'bash -s' < /lunch-scrape/initiate.sh
+        ssh -o StrictHostKeyChecking=no ubuntu@ec2-${INSTANCE_IP}.${{ secrets.AWS_REGION}}.compute.amazonaws.com 'bash -s' < /lunch-scrape/initiate.sh
