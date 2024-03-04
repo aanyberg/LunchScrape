@@ -41,7 +41,10 @@ jobs:
 
     - name: Copy files to EC2 instance
       run: |
+        echo ${{ secrets.EC2_INSTANCE_ID}}
         INSTANCE_IP=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID}} --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
+        echo $INSTANCE_IP + " " + ${{ secrets.AWS_REGION}}
+        echo ls
         scp -i ~/.ssh/id_rsa -r . ubuntu@ec2-13-49-146-84.eu-north-1.compute.amazonaws.com:/home/ubuntu
 
     - name: Run deployment script
