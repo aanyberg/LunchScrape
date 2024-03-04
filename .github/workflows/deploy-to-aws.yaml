@@ -43,8 +43,7 @@ jobs:
       run: |
         INSTANCE_IP=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID}} --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
         ls
-        ecco $PWD
-        scp -i ~/.ssh/id_rsa -r $PWD ubuntu@ec2-13-49-146-84.eu-north-1.compute.amazonaws.com:/home/ubuntu/lunch-scrape
+        scp -i ~/.ssh/id_rsa -r ./* ubuntu@ec2-13-49-146-84.eu-north-1.compute.amazonaws.com:/home/ubuntu/lunch-scrape
 
     - name: Run deployment script
       run: |
