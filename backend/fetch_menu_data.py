@@ -4,7 +4,7 @@ import json
 import re
 import os
 
-JSON_PATH = "./backend/app/json/"
+JSON_PATH = "./app/json/"
 
 def text_filter(text):
     pattern = r'[\r\n]+'
