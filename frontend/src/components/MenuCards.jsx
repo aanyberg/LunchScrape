@@ -19,7 +19,7 @@ function FetchAllMenus() {
       baseUrl = "http://lunchlidkoping.se:8000";
     }
 
-    const apiUrl = '${baseUrl}/api/menus';
+    const apiUrl = `${baseUrl}/api/menus`;
 
     try {
       const response = await fetch(apiUrl, responseOptions);
