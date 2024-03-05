@@ -10,9 +10,10 @@ const useGoogleAnalytics = () => {
       if (!window.location.href.includes('localhost')) {
           ReactGA.initialize('G-DPL7R4VGSH');
           console.log("GA Initialized");
-
-          // Track initial page load
-          ReactGA.pageview(window.location.pathname + window.location.search);
+          ReactGA.send({
+              hitType: "pageview",
+              page: window.location.pathname + window.location.search,
+          });
       }
   }, []);
 };
