@@ -2,12 +2,22 @@ import React from 'react';
 import FetchAllMenus from './MenuCards';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import GoogleAnalytics from './GoogleAnalytics';
 import WeekNumber from './WeekNumber';
 
+const useGoogleAnalytics = () => {
+  useEffect(() => {
+      if (!window.location.href.includes('localhost')) {
+          ReactGA.initialize('G-DPL7R4VGSH');
+          console.log("GA Initialized");
+
+          // Track initial page load
+          ReactGA.pageview(window.location.pathname + window.location.search);
+      }
+  }, []);
+};
 
 const HomePage = () => {
-  GoogleAnalytics();
+  useGoogleAnalytics();
   return (
     <>
       <div className='container m-0 p-0 is-fluid backgroundImage'>
