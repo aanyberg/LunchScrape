@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 
-const IP_ADDRESS = "http://lunchlidkoping.se:8000";
-
 const responseOptions = {
     method: "GET",
     headers: {
@@ -16,24 +14,31 @@ function FetchAllMenus() {
   const [villaItems, setVillaMenu] = useState([]);
   
   const fetchMenus = async () => {
-    const response = await fetch(IP_ADDRESS + "/api/menus", responseOptions);
-    const data = await response.json();
-    
-    const menu = JSON.parse(data);
-    const mellbygatansMenu = menu.mellbygatans;
-    const skafferietMenu = menu.skafferiet;
-    const pinchosMenu = menu.pinchos;
-    const villaMenu = menu.villa_restaurangen;
+    let baseUrl = "http://localhost:8000";
+    if (!window.location.href.includes('localhost')) {
+      baseUrl = "http://lunchlidkoping.se:8000";
+    }
 
-  
-    if (!response.ok) {
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    } else {
+    const apiUrl = '${baseUrl}/api/menus';
+
+    try {
+      const response = await fetch(apiUrl, responseOptions);
+      if (!response.ok) {
+        throw new Error('Network Response: ' + response.statusText);
+      }
+      const data = await response.json();
+      const menu = JSON.parse(data);
+      const mellbygatansMenu = menu.mellbygatans;
+      const skafferietMenu = menu.skafferiet;
+      const pinchosMenu = menu.pinchos;
+      const villaMenu = menu.villa_restaurangen;
+      
       setMellbygatansMenu(mellbygatansMenu);
       setSkafferietMenu(skafferietMenu);
       setPinchosMenu(pinchosMenu);
       setVillaMenu(villaMenu);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
     }
   };
 
