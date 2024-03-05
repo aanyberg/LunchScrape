@@ -48,6 +48,6 @@ jobs:
     - name: Run deployment script
       run: |
         INSTANCE_IP=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID}} --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
-        ssh -i ~/.ssh/id_rsa ubuntu@ec2-13-49-146-84.eu-north-1.compute.amazonaws.com 'bash cd ~/lunch-scrape && sh initiate.sh'
+        ssh -i ~/.ssh/id_rsa ubuntu@ec2-13-49-146-84.eu-north-1.compute.amazonaws.com 'cd ~/lunch-scrape; sh initiate.sh'
 
 
