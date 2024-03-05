@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const IP_ADDRESS = "http://lunchlidkoping.se:8000";
+const IP_ADDRESS = "http://localhost:8000";
 
 const responseOptions = {
     method: "GET",
