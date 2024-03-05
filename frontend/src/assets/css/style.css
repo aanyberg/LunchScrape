@@ -1,3 +1,5 @@
+@import "~@creativebulma/bulma-divider";
+
 :root {
   --primary: #780116;
   --primary-content: #a0c4df;
@@ -124,3 +126,15 @@
   font-style: normal;
 }
 
+.force-bottom {
+  position: absolute;
+  bottom: 2em;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  min-width: 50%
+}
+
+.parent-relative {
+  position: relative;
+}

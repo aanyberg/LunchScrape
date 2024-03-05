@@ -10,7 +10,7 @@ function WeekNumber() {
     return weekNumber;
   };
   return (
-    <div className='hero has-text-centered mt-6 mb-0 px-6 mx-6 box'>
+    <div className='hero has-text-centered mb-6 box'>
 		  <p className='title is-1 primary-light-text'>Vecka {getCurrentWeekNumber()}</p>
     </div>
   );

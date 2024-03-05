@@ -6,6 +6,7 @@
 .vscode
 .idea
 ./backend/dependencies
+.dockerignore
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
