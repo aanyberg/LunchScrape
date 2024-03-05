@@ -5,6 +5,7 @@
 .gitignore
 .vscode
 .idea
+./backend/dependencies
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

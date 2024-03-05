@@ -2,8 +2,12 @@ import React from 'react';
 import FetchAllMenus from './MenuCards';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import GoogleAnalytics from './GoogleAnalytics';
+import WeekNumber from './WeekNumber';
+
 
 const HomePage = () => {
+  GoogleAnalytics();
   return (
     <>
       <div className='container m-0 p-0 is-fluid backgroundImage'>
@@ -17,6 +21,7 @@ const HomePage = () => {
       </div>
       <section className='hero background-color'>
         <div className='hero-body'>
+          <WeekNumber />
           <FetchAllMenus />
         </div>
       </section>
