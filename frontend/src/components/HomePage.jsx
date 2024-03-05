@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FetchAllMenus from './MenuCards';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import WeekNumber from './WeekNumber';
+import ReactGA from 'react-ga4';
 
 const useGoogleAnalytics = () => {
   useEffect(() => {
